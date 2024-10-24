@@ -2,8 +2,9 @@
 import { useContext } from "react"
 import logo from "../../assets/Images/logo.png"
 import { AuthContext } from "../../Provider/AuthProvider"
+import { Link } from "react-router-dom";
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     return (
         <div className='navbar bg-base-100 shadow-sm container px-4 mx-auto'>
             <div className='flex-1'>
@@ -15,13 +16,13 @@ const Navbar = () => {
             <div className='flex-none'>
                 <ul className='menu menu-horizontal px-1'>
                     <li>
-                        <div>Home</div>
+                      <Link to="/"><div>Home</div></Link>
                     </li>
 
                     {
                         !user && (
                             <li>
-                                <div>Login</div>
+                               <Link to="/login"> <div>Login</div></Link>
                             </li>
                         )
                     }
@@ -35,11 +36,11 @@ const Navbar = () => {
                             role='button'
                             className='btn btn-ghost btn-circle avatar'
                         >
-                            <div className='w-10 rounded-full' title=''>
+                            <div title={user?.displayName} className='w-10 rounded-full'>
                                 <img
                                     referrerPolicy='no-referrer'
                                     alt='User Profile Photo'
-                                    src=''
+                                    src={user?.photoURL}
                                 />
                             </div>
                         </div>
@@ -60,7 +61,7 @@ const Navbar = () => {
                                 <div>Bid Requests</div>
                             </li>
                             <li className='mt-2'>
-                                <button className='bg-gray-200 block text-center'>Logout</button>
+                                <button onClick={logOut} className='bg-gray-200 block text-center'>Logout</button>
                             </li>
                         </ul>
                     </div>
