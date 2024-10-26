@@ -12,6 +12,8 @@ export const router = createBrowserRouter([
         {
           path: "/",
           element: <Home></Home>,
+          // loader : () => fetch(`${import.meta.env.VITE_API_URL}/jobs`)
+          loader : () => fetch('http://localhost:9000/jobs')
         },
         {
           path: "/login",
