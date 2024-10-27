@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <Carousel></Carousel>
-            <TabCategories jobs={jobs}></TabCategories>
+            <TabCategories></TabCategories>
         </div>
     );
 };
