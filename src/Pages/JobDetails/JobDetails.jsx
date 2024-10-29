@@ -15,6 +15,7 @@ const JobDetails = () => {
     const {_id,job_title,category, deadline, description, min_price, max_price, buyer} = job || {};
 
     const handleFormSubmission = async e => {
+      e.preventDefault();
       if(user?.email === buyer?.email) 
           return toast.error('Action is not permitted');
         e.preventDefault();

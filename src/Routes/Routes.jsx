@@ -5,6 +5,8 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import JobDetails from "../Pages/JobDetails/JobDetails";
 import AddJob from "../Pages/AddJob/AddJob";
+import BidRequests from "../Pages/BidRequest/BidRequest";
+import MyPostedJobs from "../Pages/MyPostedJobs/MyPostedJobs";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +34,14 @@ export const router = createBrowserRouter([
         {
           path : '/add-job',
           element : <AddJob></AddJob>
+        },
+        {
+          path : '/bid-request',
+          element : <BidRequests></BidRequests>
+        },
+        {
+          path : '/my-posted-jobs',
+          element : <MyPostedJobs></MyPostedJobs>
         }
       ],
     },
