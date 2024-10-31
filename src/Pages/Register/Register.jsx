@@ -1,10 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
   const { signInWithGoogle, createUser, updateUserProfile, user, setUser } = useContext(AuthContext);
 
   // Handle email/password registration
@@ -26,7 +28,7 @@ const Register = () => {
       toast.success("SignUp Successful");
 
       // 4. Navigate to homepage or dashboard after successful signup
-      navigate("/");
+      navigate(form, { replace: true });
 
     } catch (err) {
       console.error(err);
@@ -42,7 +44,7 @@ const Register = () => {
       toast.success("SignIn Successful");
 
       // Navigate after successful sign-in
-      navigate("/");
+      navigate(from, {replace : true});
 
     } catch (err) {
       console.error(err);
