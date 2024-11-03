@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom"
+import { Navigate, useLoaderData } from "react-router-dom"
 import { AuthContext } from "../../Provider/AuthProvider";
 
 import { useState } from "react";
@@ -45,6 +45,8 @@ const JobDetails = () => {
         try{
           const {data} = await axios.post('http://localhost:9000/bid', bidData);
           console.log(data);
+          toast.success('Bid Place Successfully')
+          Navigate('/')
         } catch (err){
           console.log(err);
         }

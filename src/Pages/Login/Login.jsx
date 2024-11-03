@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Provider/AuthProvider"
 import toast from "react-hot-toast";
@@ -7,7 +7,12 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state || "/";
-    const { signIn, signInWithGoogle } = useContext(AuthContext);
+    const { signIn, signInWithGoogle , user, loading} = useContext(AuthContext);
+    useEffect(() =>{
+    if(user){
+       navigate('/')
+    }  
+    }, [navigate, user]);
     const handleGoogleSignIn = async () =>{
       try{
         await signInWithGoogle()
@@ -37,6 +42,7 @@ const Login = () => {
             toast.error(err?.message);
         }
     }
+    if(user || loading) return;
     return (
       <div className='flex justify-center items-center min-h-[calc(100vh-306px)]'>
         <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
